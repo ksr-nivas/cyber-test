@@ -1,0 +1,14 @@
+:host ::ng-deep .p-panel.p-panel-toggleable {
+    & .p-panel-header {
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        background-color: #565454;
+        color: #ffffff;
+    }
+    & .p-panel-header-icon {
+        box-shadow: none;
+    }
+    & .p-panel-header-icon:enabled:hover {
+        background: none;
+    }
+}

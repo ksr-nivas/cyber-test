@@ -1,0 +1,26 @@
+<div class="basic-info-container text-gray-800">
+    <main class="main mt-4 text-sm">
+        <div class="formgrid grid row-gap-4 justify-content-between" [formGroup]="basicInfoForm">
+            <div class="field col-12 md:col-5">
+                <label for="firstname2" class="required">Name</label>
+                <input id="firstname2" type="text" formControlName="name" required
+                        class="text-base text-color surface-overlay p-3 border-1 border-solid border-round focus:border-primary w-full">
+            </div>
+            <div class="field col-12 md:col-5">
+                <label for="lastname2" class="required">E-mail Address</label>
+                <input id="lastname2" type="text" formControlName="email" required
+                        class="text-base text-color surface-overlay p-3 border-1 border-solid border-round focus:border-primary w-full">
+            </div>
+            <div class="field col-12 md:col-5">
+                <label for="firstname2" class="required">Address</label>
+                <input id="firstname2" type="text" formControlName="address" required
+                        class="text-base text-color surface-overlay p-3 border-1 border-solid border-round focus:border-primary w-full">
+            </div>
+            <div class="field col-12 md:col-5">
+                <label for="lastname2" class="required">Contact Number</label>
+                <input id="lastname2" type="text" formControlName="contactNumber" required
+                        class="text-base text-color surface-overlay p-3 border-1 border-solid border-round focus:border-primary w-full">
+            </div>
+        </div>
+    </main>
+</div>

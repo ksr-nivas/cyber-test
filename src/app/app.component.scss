@@ -1,0 +1,16 @@
+.app-banner {
+    background: linear-gradient(#043865, #000a12);
+    color: #ffffff;
+}
+
+.list {
+    list-style: none;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+.active {
+    border-left: 5px ridge #ffffff;
+}

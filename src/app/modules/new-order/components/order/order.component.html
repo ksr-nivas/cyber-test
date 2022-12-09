@@ -1,0 +1,33 @@
+<div class="order-panel bg-white px-4 md:px-8 py-4 text-gray-800 shadow-3">
+    <header>
+        <p class="text-2xl font-bold mb-6">PIZZA ORDER</p>
+    </header>
+
+    <main class="min-h-screen overflow-auto">
+        <header class="basic-info">
+            <label for="heading" class="text-xl font-bold">Basic Information</label>
+        </header>
+        <hr class="border-1 surface-border">
+        <app-basic-info #basicInfo></app-basic-info>
+
+        <header class="choose-pizza mt-4 mb-2 flex justify-content-between">
+            <label for="heading" class="text-xl font-bold">Choose your Pizza</label>
+            <button pButton icon="pi pi-plus" class="p-button-outlined shadow-none p-button-sm p-button-success m-0 p-2"
+                label="Add Pizza" (click)="addPizzaToStore()">
+            </button>
+        </header>
+        <app-pizza-details></app-pizza-details>
+
+        <header class="summary mt-6">
+            <label for="heading" class="text-xl font-bold">Summary</label>
+        </header>
+        <hr class="border-1 surface-border">
+        <app-summary></app-summary>
+    </main>
+
+    <footer class="flex justify-content-end pt-4 pb-8">
+        <button pButton class="p-button-outlined p-button-sm shadow-none" label="Place Order" (click)="placeOrder()"></button>
+    </footer>
+</div>
+
+<p-toast key="tr"></p-toast>

@@ -1,0 +1,58 @@
+<div class="dashboard-panel bg-white sm:px-2 md:px-8 py-4 text-gray-800 shadow-3">
+    <div class="grid">
+        <div class="col-12 md:col-6 border-right-2 surface-border">
+            <header class="flex flex-column align-items-center">
+                <h2>DELIVERY STATUS</h2>
+                <label for="total" class="text-2xl">Total Orders</label>
+                <span class="text-4xl font-bold pt-2">{{ordersList.length}}</span>
+            </header>
+            <div class="guage-panel flex justify-content-between px-5">
+                <div>
+                    <p-knob [(ngModel)]="deliveredCount" [size]="150" valueColor="mediumspringgreen"></p-knob>
+                    <span class="text-sm">Orders Delivered: {{deliveredCount}}</span>
+                </div>
+                <div>
+                    <p-knob [(ngModel)]="pendingCount" [size]="150" valueColor="orangered"></p-knob>
+                    <span class="text-sm">Pending Delivery: {{pendingCount}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-6 sm: mt-4 flex flex-column align-items-center justify-content-center">
+            <span class="text-4xl">TOTAL SALES</span>
+            <span class="text-sm my-2">USD</span>
+            <span class="text-5xl font-bold">{{ordersTotalCost$ | async | number}}</span>
+        </div>
+    </div>
+
+    <div class="grid mt-6">
+        <div class="col-12 md:col-6 mt-4 border-right-2 surface-border flex flex-column align-items-center">
+            <span class="text-sm mb-4">ORDER HISTORY</span>
+            <p-chart #chart type="line" [data]="basicData" [options]="basicOptions" class="w-12" ></p-chart>
+        </div>
+        <div class="col-12 md:col-6 mt-4 flex flex-column align-items-center">
+            <span class="text-sm mb-4">REPORT</span>
+            <div class="flex w-full mb-4">
+                <div class="col-12 md:col-6 flex flex-column align-items-center justify-content-center">
+                    <small>Ontime Delivery</small>
+                    <span class="text-4xl my-3">+ {{(deliveredCount/100*ordersList.length) | number:'1.1-1'}} % </span>
+                    <p-progressBar id="ontime-bar" [value]="(deliveredCount/100)*ordersList.length" [style]="{'height': '0.4rem'}"
+                                    styleClass="w-8rem ontime" [showValue]="false">
+                    </p-progressBar>
+                </div>
+                <div class="col-12 md:col-6 flex flex-column align-items-center justify-content-center">
+                    <small>Late Deliveries</small>
+                    <span class="text-4xl my-3">{{(pendingCount/100*ordersList.length) | number:'1.1-1'}} % </span>
+                    <p-progressBar id="delay-bar" [value]="(pendingCount/100)*ordersList.length" [style]="{'height': '0.4rem'}"
+                                    styleClass="w-8rem delay" [showValue]="false">
+                    </p-progressBar>
+                </div>
+            </div>
+            <hr class="border-1 surface-border w-full"/>
+            <div class="flex flex-column align-items-start w-full pt-3 pl-4">
+                <small>Performace</small>
+                <span class="text-xl mt-1 text-green-400 font-semibold">+ {{deliveredCount/100*ordersList.length | number:'1.2-2'}} % </span>
+            </div>
+        </div>
+    </div>
+</div>

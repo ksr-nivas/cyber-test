@@ -1,0 +1,78 @@
+<div class="mx-4 md:mx-0">
+    <p class="my-2">Order Management</p>
+    <small class="text-gray-500 text-xs">Manage your orders here and get an overview of status</small>
+</div>
+<div class="status-panel bg-white px-4 py-4 mt-3 text-gray-800 shadow-3">
+    <section class="flex justify-content-between align-items-center">
+        <span>Total items in inventory</span>
+        <button pButton class="p-button-outlined p-button-sm" label="Print Summary"></button>
+    </section>
+    <section>
+        <span class="text-2xl text-blue-400">
+            {{ordersList?.length | number}} 
+            <small class="text-sm text-black-alpha-80">items</small>
+        </span>
+        <div class="flex">
+            <div class="my-4 bar bg-completed shadow-2" style="height: 12px;" *ngIf="status.completed"
+                [ngStyle]="{'width': ((status.completed/ordersList.length) * 100)+'px'}">
+            </div>
+            <div class="my-4 bar bg-pending shadow-2" style="height: 12px;" *ngIf="status.pending"
+                [ngStyle]="{'width': ((status.pending/ordersList.length) * 100)+'px'}">
+            </div>
+            <div class="my-4 bar bg-cancelled shadow-2" style="height: 12px;" *ngIf="status.cancelled"
+                [ngStyle]="{'width': ((status.cancelled/ordersList.length) * 100)+'px'}">
+            </div>
+        </div>
+    </section>
+    <hr class="w-full surface-border">
+
+    <div class="status my-4 flex flex-wrap gap-5">
+        <div class="flex align-items-center">
+            <div class="dot mx-2 bg-completed"></div>
+            <div class="flex flex-column">
+                <span class="text-sm">Completed</span>
+                <span class="text-xs mt-1">{{status.completed}}</span>
+            </div>
+        </div>
+        <div class="flex align-items-center">
+            <div class="dot mx-2 bg-pending"></div>
+            <div class="flex flex-column">
+                <span class="text-sm">Pending</span>
+                <span class="text-xs mt-1">{{status.pending}}</span>
+            </div>
+        </div>
+        <div class="flex align-items-center">
+            <div class="dot mx-2 bg-cancelled"></div>
+            <div class="flex flex-column">
+                <span class="text-sm">Cancelled</span>
+                <span class="text-xs mt-1">{{status.cancelled}}</span>
+            </div>
+        </div>
+    </div>
+    
+    <p-table #table [value]="ordersList" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr class="font-normal text-xs">
+                <th>Item ID</th>
+                <th>Address</th>
+                <th>Ordered Time</th>
+                <th>Status / Action</th>
+                <th> - </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order>
+            <tr class="text-sm">
+                <td>{{order.id}}</td>
+                <td>{{order.address.address}}</td>
+                <td>{{order.createdTime | time}}</td>
+                <td>{{order.status}}</td>
+                <td *ngIf="order.status !== 'delivered' && order.status !== 'cancelled'" class="border-top-1">
+                    <a href="javascript:void(0)" (click)="markAsCompleted(order)">Mark as Completed</a>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-toast key="tr"></p-toast>
+

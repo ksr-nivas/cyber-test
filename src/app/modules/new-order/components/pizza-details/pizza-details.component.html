@@ -1,0 +1,38 @@
+<div class="pizza-details-container">
+    <p-panel [toggleable]="true" toggler="icon" collapseIcon="pi pi-arrow-circle-up text-white" styleClass="m-0 my-2"
+        expandIcon="pi pi-arrow-circle-down text-white"
+        *ngFor="let pizza of pizzas$ | async as pizzasArray; let i = index; trackBy: trackByMethod">
+        <ng-template pTemplate="header">
+            <div class="m-0 p-0 w-full flex align-items-center justify-content-between">
+                <span>{{pizza.name}}</span>
+                <button name="removePzzaBtn" *ngIf="i > 0" pButton
+                    class="p-button-sm p-button-text p-button-danger" label="Remove Pizza" (click)="deletePizza(pizza)"></button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="pizza-sizes">
+                <span class="choose-label">Choose size</span>
+                <div class="mt-2 flex flex-wrap gap-2 justify-content-start">
+                    <button pButton class="p-button-sm p-button-outlined border-noround w-8rem shadow-none"
+                        *ngFor="let pSize of pizzaSizes | keyvalue; let i = index;" [label]="pSize.key"
+                        [ngClass]="pizza.size === pSize.value ? 'bg-primary-500 text-white' : ''"
+                        (click)="selectPizzaSize(pSize.value, pizza)">
+                    </button>
+                </div>
+            </div>
+
+            <div class="pizza-toppings mt-6">
+                <span class="toppings-label">Pick your toppings</span>
+                <div class="mt-2 flex flex-wrap gap-4 justify-content-between">
+                    <button pButton
+                        class="p-button-sm p-button-outlined p-button-info border-noround w-12rem shadow-none"
+                        [ngClass]="getIndex(pTop.key, pizza) > -1 ? 'bg-primary-500 text-white' : ''"
+                        *ngFor="let pTop of pizzaToppings | keyvalue; let i = index;" [label]="pTop.key"
+                        (click)="addPizzaToppings(pTop.key, pizza)"
+                        [icon]="getIndex(pTop.key, pizza) > -1 ? 'pi pi-stop-circle text-xl' : 'pi pi-circle text-xl'">
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+    </p-panel>
+</div>

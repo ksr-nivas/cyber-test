@@ -1,0 +1,18 @@
+<div class="summary-container my-5">
+    <div *ngFor="let pizza of pizzas$ | async" class="my-4">
+        <div class="flex justify-content-between align-items-center">
+            <label for="name" class="font-bold">{{pizza.size}} {{pizza.name}}</label>
+            <div class="border-bottom-1 border-dotted surface-border w-8"></div>
+            <span class="font-bold">{{pizza.price | currency: 'GBP '}}</span>
+        </div>
+        <div class="toppings pl-5 flex justify-content-between text-sm my-3" *ngFor="let top of pizza.toppings">
+            <span>{{top.name}}</span>
+            <span>{{top.price}}</span>
+        </div>
+    </div>
+    <hr>
+    <div class="total text-xl font-bold flex justify-content-between py-4">
+        <span>TOTAL</span>
+        <span>{{totalPrice$ | async | number:'1.2-2' | currency: 'GBP '}}</span>
+    </div>
+</div>

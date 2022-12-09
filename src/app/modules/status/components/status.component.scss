@@ -1,0 +1,21 @@
+.status-panel {
+    border-radius: 3px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+}
+
+.bg-completed {
+    background-color: rgb(59, 219, 14);
+}
+
+.bg-pending {
+    background-color: rgb(11, 140, 238);
+}
+
+.bg-cancelled {
+    background-color: rgb(241, 5, 5);
+}

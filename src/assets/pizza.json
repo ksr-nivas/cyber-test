@@ -1,0 +1,16 @@
+{
+    "pizzaConfig": {
+        "availableSizes": ["small", "medium", "large"],
+        "prices": [{ "size": "small", "price": 10.99}, {"size": "medium", "price": 15.99}, {"size": "large", "price": 19.99}],
+        "toppings": [
+            "bacon",
+            "pepperoni",
+            "mushroom",
+            "olive",
+            "basil",
+            "sweetcorn",
+            "onion",
+            "tomato"
+        ]
+    }
+}
